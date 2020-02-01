@@ -39,7 +39,7 @@ class _DateTrainerState extends State<DateTrainer> {
     flutterTts.speak(dateFormat.format(date));
   }
 
-  _selectRandomDate() {
+  _regenerateDate() {
     var offset = Random().nextInt(355);
     var year = DateTime.now().year;
     var date = DateTime(year).add(Duration(days: offset));
@@ -51,25 +51,35 @@ class _DateTrainerState extends State<DateTrainer> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text(dateFormat.format(selectedDate),
-            style: TextStyle(fontSize: 30)),
-        SizedBox(height: 30),
-        RoundButton(
-          text: 'Select date',
-          icon: Icons.date_range,
-          onPressed: () => _selectDate(context),
+        Text(
+          dateFormat.format(selectedDate),
+          style: TextStyle(
+            fontSize: 50,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        SizedBox(height: 30),
+        SizedBox(height: 100),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RoundButton(
+              text: 'Random',
+              icon: Icons.autorenew,
+              onPressed: () => _regenerateDate(),
+            ),
+            SizedBox(width: 50),
+            RoundButton(
+              text: 'Select',
+              icon: Icons.date_range,
+              onPressed: () => _selectDate(context),
+            ),
+          ],
+        ),
+        SizedBox(height: 100),
         RoundButton(
           text: 'Play',
           icon: Icons.play_arrow,
           onPressed: () => _speak(selectedDate),
-        ),
-        SizedBox(height: 30),
-        RoundButton(
-          text: 'Next',
-          icon: Icons.navigate_next,
-          onPressed: () => _selectRandomDate(),
         ),
       ],
     );
