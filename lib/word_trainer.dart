@@ -1,9 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
+import 'data_manager.dart';
 import 'round_button.dart';
 
 FlutterTts flutterTts = FlutterTts();
+DataManager dataManager = DataManager();
 
 class WordTrainer extends StatefulWidget {
   @override
@@ -11,20 +15,33 @@ class WordTrainer extends StatefulWidget {
 }
 
 class _WordTrainerState extends State<WordTrainer> {
-  String currentWord;
+  String currentWord = '';
 
-  _WordTrainerState() {
-    _fetchWord();
-  }
+  @override
+  void initState() {
+    super.initState();
 
-  Future<Null> _refetchWord(BuildContext context) {
-    setState(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _fetchWord();
     });
   }
 
-  void _fetchWord() {
-    currentWord = 'Random';
+  void _fetchWord() async {
+    var words = await dataManager.getWords();
+
+    if (words.length == 0) {
+      return;
+    }
+
+    var word = currentWord;
+
+    do {
+      word = words[Random().nextInt(words.length)];
+    } while (word == currentWord);
+
+    setState(() {
+      currentWord = word;
+    });
   }
 
   TextEditingController _controller = TextEditingController();
@@ -72,7 +89,7 @@ class _WordTrainerState extends State<WordTrainer> {
               text: 'Random',
               icon: Icons.autorenew,
               backgroundColor: Colors.green,
-              onPressed: () => _refetchWord(context),
+              onPressed: () => _fetchWord(),
             ),
             SizedBox(width: 50),
             RoundButton(
@@ -82,6 +99,7 @@ class _WordTrainerState extends State<WordTrainer> {
               onPressed: () => _createAlertDialog(context).then((onValue) {
                 setState(() {
                   currentWord = onValue;
+                  dataManager.addWord(currentWord);
                 });
               }),
             ),
