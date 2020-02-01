@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'date_trainer.dart';
 import 'number_trainer.dart';
+import 'word_trainer.dart';
 
 var tabs = [
   NumberTrainer(),
   DateTrainer(),
-  Text('Words'),
+  WordTrainer(),
 ];
 
 class Home extends StatefulWidget {
