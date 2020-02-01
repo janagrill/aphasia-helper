@@ -9,7 +9,7 @@ class DataManager {
   _getDatabase() async {
     if (this._database == null) {
       this._database = openDatabase(
-        join(await getDatabasesPath(), 'data.db'),
+        join(await getDatabasesPath(), 'data3.db'),
         onCreate: (db, version) {
           return db.execute(
             "CREATE TABLE words(text TEXT)",

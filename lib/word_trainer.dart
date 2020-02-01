@@ -31,17 +31,21 @@ class _WordTrainerState extends State<WordTrainer> {
 
     if (words.length == 0) {
       return;
+    } else if (words.length == 1) {
+      setState(() {
+        currentWord = words[0];
+      });
+    } else {
+      var word = currentWord;
+
+      do {
+        word = words[Random().nextInt(words.length)];
+      } while (word == currentWord);
+
+      setState(() {
+        currentWord = word;
+      });
     }
-
-    var word = currentWord;
-
-    do {
-      word = words[Random().nextInt(words.length)];
-    } while (word == currentWord);
-
-    setState(() {
-      currentWord = word;
-    });
   }
 
   TextEditingController _controller = TextEditingController();
@@ -97,10 +101,12 @@ class _WordTrainerState extends State<WordTrainer> {
               icon: Icons.keyboard,
               backgroundColor: Colors.green,
               onPressed: () => _createAlertDialog(context).then((onValue) {
-                setState(() {
-                  currentWord = onValue;
-                  dataManager.addWord(currentWord);
-                });
+                if (onValue != null) {
+                  setState(() {
+                    currentWord = onValue;
+                    dataManager.addWord(currentWord);
+                  });
+                }
               }),
             ),
           ],
