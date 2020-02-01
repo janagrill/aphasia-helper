@@ -8,6 +8,23 @@ void main() {
         appBar: AppBar(
           title: Text('Aphasia'),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 0, // this will be set when a new tab is tapped
+          items: [
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.format_list_numbered),
+              title: new Text('Numbers'),
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.date_range),
+              title: new Text('Dates'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book),
+              title: Text('Words'),
+            )
+          ],
+        ),
         body: PlayWordPage(),
       ),
     ),
