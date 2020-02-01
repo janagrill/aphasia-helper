@@ -45,17 +45,19 @@ class PlayWordPage extends StatelessWidget {
           Text(
             'Date',
           ),
-          FlatButton(
+          IconButton(
+            iconSize: 80,
+            icon: Icon(Icons.play_arrow),
             onPressed: () {
               print('play button pressed');
             },
-            child: Icon(Icons.play_arrow),
           ),
-          FlatButton(
+          IconButton(
+            iconSize: 80,
+            icon: Icon(Icons.navigate_next),
             onPressed: () {
               print('next button pressed');
             },
-            child: Icon(Icons.navigate_next),
           ),
         ],
       ),
