@@ -80,6 +80,7 @@ class _WordTrainerState extends State<WordTrainer> {
       children: <Widget>[
         Text(
           currentWord,
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 50,
             fontWeight: FontWeight.bold,
