@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'date_trainer.dart';
+
+var tabs = [
+  Text('Numbers'),
+  DateTrainer(),
+  Text('Words'),
+];
+
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -8,6 +16,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int tabIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +25,8 @@ class _HomeState extends State<Home> {
         title: Text('Aphasia'),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // this will be set when a new tab is tapped
+        currentIndex: tabIndex,
+        onTap: (int index) => setState(() { tabIndex = index; }),
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.format_list_numbered),
@@ -31,45 +42,7 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      body: PlayWordPage(),
-    );
-  }
-}
-
-class PlayWordPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Text(
-            'Date',
-            style: TextStyle(fontSize: 30),
-          ),
-          IconButton(
-            iconSize: 80,
-            icon: Icon(Icons.play_arrow),
-            onPressed: () {
-              print('play button pressed');
-            },
-          ),
-          Text(
-            'Play word',
-            style: TextStyle(fontSize: 30),
-          ),
-          IconButton(
-            iconSize: 80,
-            icon: Icon(Icons.navigate_next),
-            onPressed: () {
-              print('next button pressed');
-            },
-          ),
-          Text(
-            'Next word',
-            style: TextStyle(fontSize: 30),
-          ),
-        ],
-      ),
+      body: tabs[tabIndex],
     );
   }
 }
