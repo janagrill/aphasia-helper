@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class DateTrainer extends StatefulWidget {
+import 'round_button.dart';
 
+class DateTrainer extends StatefulWidget {
   @override
   _DateTrainerState createState() => _DateTrainerState();
 }
@@ -25,31 +26,27 @@ class _DateTrainerState extends State<DateTrainer> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-
       children: <Widget>[
-        Text("${selectedDate.toLocal()}".split(' ')[0], style: TextStyle(fontSize: 30)),
-        RaisedButton(onPressed: () => _selectDate(context), child: Text('Select date')),
-        IconButton(
-          iconSize: 80,
-          icon: Icon(Icons.play_arrow),
+        Text("${selectedDate.toLocal()}".split(' ')[0],
+            style: TextStyle(fontSize: 30)),
+        RoundButton(
+          text: 'Select date',
+          icon: Icons.date_range,
+          onPressed: () => _selectDate(context),
+        ),
+        RoundButton(
+          text: 'Play',
+          icon: Icons.play_arrow,
           onPressed: () {
             print('play button pressed');
           },
         ),
-        Text(
-          'Play word',
-          style: TextStyle(fontSize: 30),
-        ),
-        IconButton(
-          iconSize: 80,
-          icon: Icon(Icons.navigate_next),
+        RoundButton(
+          text: 'Next',
+          icon: Icons.navigate_next,
           onPressed: () {
             print('next button pressed');
           },
-        ),
-        Text(
-          'Next word',
-          style: TextStyle(fontSize: 30),
         ),
       ],
     );
