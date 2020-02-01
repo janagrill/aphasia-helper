@@ -26,7 +26,9 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: tabIndex,
-        onTap: (int index) => setState(() { tabIndex = index; }),
+        onTap: (int index) => setState(() {
+          tabIndex = index;
+        }),
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.format_list_numbered),
@@ -42,7 +44,7 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      body: tabs[tabIndex],
+      body: Center(child: tabs[tabIndex]),
     );
   }
 }
