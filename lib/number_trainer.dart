@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 import 'round_button.dart';
+
+FlutterTts flutterTts = FlutterTts();
 
 class NumberTrainer extends StatefulWidget {
   @override
@@ -15,17 +18,43 @@ class _NumberTrainerState extends State<NumberTrainer> {
   int randomNumber;
 
   _NumberTrainerState() {
-    generateNumber();
+    _generateNumber();
   }
 
   Future<Null> _regenerateNumber(BuildContext context) {
     setState(() {
-      generateNumber();
+      _generateNumber();
     });
   }
 
-  void generateNumber() {
+  void _generateNumber() {
     randomNumber = randomizer.nextInt(100);
+  }
+
+  TextEditingController _controller = TextEditingController();
+
+  Future<String> _createAlertDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Input number'),
+          content: TextField(
+            controller: _controller,
+            keyboardType: TextInputType.number,
+          ),
+          actions: <Widget>[
+            MaterialButton(
+              elevation: 5.0,
+              onPressed: () {
+                Navigator.of(context).pop(_controller.text.toString());
+              },
+              child: Text('Submit'),
+            )
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -40,23 +69,33 @@ class _NumberTrainerState extends State<NumberTrainer> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        RoundButton(
-          text: 'New number',
-          icon: Icons.autorenew,
-          onPressed: () => _regenerateNumber(context),
+        SizedBox(height: 100),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            RoundButton(
+              text: 'Random',
+              icon: Icons.autorenew,
+              onPressed: () => _regenerateNumber(context),
+            ),
+            SizedBox(width: 50),
+            RoundButton(
+              text: 'Input',
+              icon: Icons.keyboard,
+              onPressed: () => _createAlertDialog(context).then((onValue) {
+                setState(() {
+                  randomNumber = int.parse(onValue);
+                });
+              }),
+            ),
+          ],
         ),
+        SizedBox(height: 100),
         RoundButton(
           text: 'Play',
           icon: Icons.play_arrow,
           onPressed: () {
-            print('play button pressed');
-          },
-        ),
-        RoundButton(
-          text: 'Next',
-          icon: Icons.navigate_next,
-          onPressed: () {
-            print('next button pressed');
+            flutterTts.speak('${randomNumber}');
           },
         ),
       ],
