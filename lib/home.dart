@@ -37,10 +37,6 @@ class _HomeState extends State<Home> {
         }),
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(Icons.add_alert),
-            title: new Text('Emergency'),
-          ),
-          BottomNavigationBarItem(
             icon: new Icon(Icons.format_list_numbered),
             title: new Text('Numbers'),
           ),
