@@ -12,11 +12,11 @@ class RoundButton extends StatelessWidget {
   });
 
   Widget build(context) {
-    return SizedBox.fromSize(
-      size: Size(100, 100),
-      child: Column(
-        children: <Widget>[
-          ClipOval(
+    return Column(
+      children: <Widget>[
+        SizedBox.fromSize(
+          size: Size(100, 100),
+          child: ClipOval(
             child: Material(
               color: Colors.blue,
               child: InkWell(
@@ -29,12 +29,15 @@ class RoundButton extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            text,
-            style: TextStyle(fontSize: 20),
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'date_trainer.dart';
+import 'number_trainer.dart';
 
 var tabs = [
-  Text('Numbers'),
+  NumberTrainer(),
   DateTrainer(),
   Text('Words'),
 ];
