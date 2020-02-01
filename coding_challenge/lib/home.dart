@@ -44,6 +44,7 @@ class PlayWordPage extends StatelessWidget {
         children: <Widget>[
           Text(
             'Date',
+            style: TextStyle(fontSize: 30),
           ),
           IconButton(
             iconSize: 80,
@@ -52,12 +53,20 @@ class PlayWordPage extends StatelessWidget {
               print('play button pressed');
             },
           ),
+          Text(
+            'Play word',
+            style: TextStyle(fontSize: 30),
+          ),
           IconButton(
             iconSize: 80,
             icon: Icon(Icons.navigate_next),
             onPressed: () {
               print('next button pressed');
             },
+          ),
+          Text(
+            'Next word',
+            style: TextStyle(fontSize: 30),
           ),
         ],
       ),
