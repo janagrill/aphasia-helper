@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'date_trainer.dart';
 import 'number_trainer.dart';
 import 'word_trainer.dart';
+import 'emergency.dart';
 
 var tabs = [
   NumberTrainer(),
   DateTrainer(),
   WordTrainer(),
+  Emergency(),
 ];
 
 class Home extends StatefulWidget {
@@ -27,6 +29,7 @@ class _HomeState extends State<Home> {
         title: Text('Aphasia'),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: tabIndex,
         onTap: (int index) => setState(() {
           tabIndex = index;
@@ -43,6 +46,10 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
             title: Text('Words'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.add_alert),
+            title: new Text('Emergency'),
           )
         ],
       ),
