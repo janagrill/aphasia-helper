@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class RoundButton extends StatelessWidget {
   final String text;
   final IconData icon;
+  final Color backgroundColor;
   final VoidCallback onPressed;
 
   RoundButton({
     @required this.text,
     @required this.icon,
+    @required this.backgroundColor,
     @required this.onPressed,
   });
 
@@ -18,7 +20,7 @@ class RoundButton extends StatelessWidget {
           size: Size(100, 100),
           child: ClipOval(
             child: Material(
-              color: Colors.blue,
+              color: backgroundColor,
               child: InkWell(
                 splashColor: Colors.white,
                 onTap: onPressed,

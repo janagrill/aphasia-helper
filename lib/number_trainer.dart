@@ -76,12 +76,14 @@ class _NumberTrainerState extends State<NumberTrainer> {
             RoundButton(
               text: 'Random',
               icon: Icons.autorenew,
+              backgroundColor: Colors.blue,
               onPressed: () => _regenerateNumber(context),
             ),
             SizedBox(width: 50),
             RoundButton(
               text: 'Input',
               icon: Icons.keyboard,
+              backgroundColor: Colors.blue,
               onPressed: () => _createAlertDialog(context).then((onValue) {
                 setState(() {
                   randomNumber = int.parse(onValue);
@@ -94,6 +96,7 @@ class _NumberTrainerState extends State<NumberTrainer> {
         RoundButton(
           text: 'Play',
           icon: Icons.play_arrow,
+          backgroundColor: Colors.blue,
           onPressed: () {
             flutterTts.speak('${randomNumber}');
           },

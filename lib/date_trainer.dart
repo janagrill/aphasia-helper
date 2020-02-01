@@ -65,12 +65,14 @@ class _DateTrainerState extends State<DateTrainer> {
             RoundButton(
               text: 'Random',
               icon: Icons.autorenew,
+              backgroundColor: Colors.orange,
               onPressed: () => _regenerateDate(),
             ),
             SizedBox(width: 50),
             RoundButton(
               text: 'Select',
               icon: Icons.date_range,
+              backgroundColor: Colors.orange,
               onPressed: () => _selectDate(context),
             ),
           ],
@@ -79,6 +81,7 @@ class _DateTrainerState extends State<DateTrainer> {
         RoundButton(
           text: 'Play',
           icon: Icons.play_arrow,
+          backgroundColor: Colors.orange,
           onPressed: () => _speak(selectedDate),
         ),
       ],

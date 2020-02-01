@@ -71,12 +71,14 @@ class _WordTrainerState extends State<WordTrainer> {
             RoundButton(
               text: 'Random',
               icon: Icons.autorenew,
+              backgroundColor: Colors.green,
               onPressed: () => _refetchWord(context),
             ),
             SizedBox(width: 50),
             RoundButton(
               text: 'Input',
               icon: Icons.keyboard,
+              backgroundColor: Colors.green,
               onPressed: () => _createAlertDialog(context).then((onValue) {
                 setState(() {
                   currentWord = onValue;
@@ -89,6 +91,7 @@ class _WordTrainerState extends State<WordTrainer> {
         RoundButton(
           text: 'Play',
           icon: Icons.play_arrow,
+          backgroundColor: Colors.green,
           onPressed: () {
             flutterTts.speak(currentWord);
           },
