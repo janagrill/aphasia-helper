@@ -15,13 +15,17 @@ class _NumberTrainerState extends State<NumberTrainer> {
   int randomNumber;
 
   _NumberTrainerState() {
-    _generateNumber(context);
+    generateNumber();
   }
 
-  Future<Null> _generateNumber(BuildContext context) {
+  Future<Null> _regenerateNumber(BuildContext context) {
     setState(() {
-      randomNumber = randomizer.nextInt(100);
+      generateNumber();
     });
+  }
+
+  void generateNumber() {
+    randomNumber = randomizer.nextInt(100);
   }
 
   @override
@@ -39,7 +43,7 @@ class _NumberTrainerState extends State<NumberTrainer> {
         RoundButton(
           text: 'New number',
           icon: Icons.autorenew,
-          onPressed: () => _generateNumber(context),
+          onPressed: () => _regenerateNumber(context),
         ),
         RoundButton(
           text: 'Play',
