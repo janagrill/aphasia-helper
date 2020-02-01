@@ -16,10 +16,15 @@ class EmergencyItem extends StatelessWidget {
       children: <Widget>[
         SizedBox.fromSize(
           size: Size(100, 100),
-          child: InkWell(child:Image.asset("images/" + imageLink), onTap: onPressed),
+          child: InkWell(
+              child: Image.asset("images/" + imageLink), onTap: onPressed),
+        ),
+        SizedBox(
+          height: 20,
         ),
         Text(
           text,
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
